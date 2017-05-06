@@ -15,9 +15,9 @@
 # limitations under the License.
 
 # inherit from the proprietary version
--include vendor/nubia/nx505j/BoardConfigVendor.mk
+-include vendor/NUBIA/NX404H/BoardConfigVendor.mk
 
-LOCAL_PATH := device/nubia/nx505j
+LOCAL_PATH := device/NUBIA/NX404H
 
 PRODUCT_COPY_FILES := $(filter-out frameworks/base/data/keyboards/AVRCP.kl:system/usr/keylayout/AVRCP.kl \
 	frameworks/base/data/keyboards/Generic.kl:system/usr/keylayout/Generic.kl \
@@ -27,7 +27,7 @@ PRODUCT_COPY_FILES := $(filter-out frameworks/base/data/keyboards/AVRCP.kl:syste
 TARGET_RIL_VARIANT := caf
 
 # Assert
-TARGET_OTA_ASSERT_DEVICE := NX505J,nx505j,cm_NX505J,cm_nx505j,NX505j,jNX505
+TARGET_OTA_ASSERT_DEVICE := NX404H,NX405H,nx404h,nx404h
 
 # Partitions
 BOARD_BOOTIMAGE_PARTITION_SIZE := 16777216
@@ -37,13 +37,13 @@ BOARD_SYSTEMIMAGE_PARTITION_SIZE := 1610612736
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 28248620544
 
 # Bootloader
-TARGET_BOOTLOADER_BOARD_NAME := MSM8974
+TARGET_BOOTLOADER_BOARD_NAME := MSM8226
 TARGET_NO_BOOTLOADER := true
 TARGET_NO_RADIOIMAGE := true
 BOARD_VENDOR := zte-qcom
 
 # Platform
-TARGET_BOARD_PLATFORM := msm8974
+TARGET_BOARD_PLATFORM := msm8226
 TARGET_BOARD_PLATFORM_GPU := qcom-adreno330
 
 # Architecture
@@ -63,18 +63,16 @@ TARGET_KRAIT_BIONIC_BBTHRESH := 64
 TARGET_KRAIT_BIONIC_PLDSIZE := 64
 
 # Kernel
-BOARD_DTBTOOL_ARGS := --force-v2
 BOARD_KERNEL_CMDLINE := console=null androidboot.hardware=qcom user_debug=23 msm_rtb.filter=0x37 ehci-hcd.park=3 androidboot.bootdevice=msm_sdcc.1 androidboot.selinux=permissive
 BOARD_KERNEL_SEPARATED_DT := true
 BOARD_KERNEL_BASE := 0x00000000
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x02000000 --tags_offset 0x01E00000
 TARGET_KERNEL_CROSS_COMPILE_PREFIX := $(ANDROID_BUILD_TOP)/prebuilts/gcc/linux-x86/arm/arm-cortex_a15-linux-gnueabihf-linaro_4.9/bin/arm-cortex_a15-linux-gnueabihf-
-TARGET_KERNEL_SOURCE := kernel/nubia/nx505j
+TARGET_KERNEL_SOURCE := kernel/NUBIA/MSM8226
 TARGET_KERNEL_ARCH := arm
-TARGET_KERNEL_CONFIG := lineage_nx505j_nomodules_defconfig
-TARGET_ZTEMT_DTS := true
-
+BOARD_CUSTOM_BOOTIMG_MK := $(LOCAL_PATH)/mkbootimg.mk
+TARGET_KERNEL_CONFIG := msm8926-nx404h_defconfig
 # Power
 TARGET_POWERHAL_VARIANT := qcom
 
@@ -136,7 +134,7 @@ EXTENDED_FONT_FOOTPRINT := true
 BOARD_ANT_WIRELESS_DEVICE := "vfs-prerelease"
 
 # Camera
-TARGET_SPECIFIC_HEADER_PATH := device/nubia/nx505j/include
+TARGET_SPECIFIC_HEADER_PATH := device/NUBIA/NX404H/include
 USE_DEVICE_SPECIFIC_CAMERA := true
 BOARD_GLOBAL_CFLAGS += -DCAMERA_VENDOR_L_COMPAT
 TARGET_HAS_LEGACY_CAMERA_HAL1 := true
@@ -154,15 +152,10 @@ TARGET_TAP_TO_WAKE_NODE := "/data/tp/easy_wakeup_gesture"
 BOARD_USES_CYANOGEN_HARDWARE := true
 BOARD_HARDWARE_CLASS += \
     hardware/cyanogen/cmhw \
-    device/nubia/nx505j/cmhw
+    device/NUBIA/NX404H/cmhw
 
 # Encryption
 TARGET_HW_DISK_ENCRYPTION := true
-
-# Init msm8974
-TARGET_INIT_VENDOR_LIB := libinit_msm8974
-TARGET_RECOVERY_DEVICE_MODULES := libinit_msm8974
-TARGET_INIT_UMOUNT_AND_FSCK_IS_UNSAFE := true
 
 # Lights
 TARGET_PROVIDES_LIBLIGHT := true
@@ -233,9 +226,7 @@ endif
 # dex-preoptimization to speed up first boot sequence
 #WITH_DEXPREOPT := false
 
-#SKIP_BOOT_JARS_CHECK := true
-
 # SELinux
 include device/qcom/sepolicy/sepolicy.mk
-BOARD_SEPOLICY_DIRS += device/nubia/nx505j/sepolicy
+BOARD_SEPOLICY_DIRS += device/NUBIA/NX404H/sepolicy
 

@@ -16,7 +16,7 @@
 #
 
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
-$(call inherit-product-if-exists, vendor/nubia/nx505j/nx505j-vendor.mk)
+$(call inherit-product-if-exists, vendor/NUBIA/NX404H/NX404H-vendor.mk)
 
 # Overlay
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
@@ -56,15 +56,11 @@ PRODUCT_COPY_FILES += \
 
 # Screen density
 PRODUCT_AAPT_CONFIG := normal
-PRODUCT_AAPT_PREF_CONFIG := xxhdpi
-
-#ADDITIONAL_DEFAULT_PROPERTIES += \
-#    ro.secure=0 \
-#    ro.adb.secure=0
-    
+PRODUCT_AAPT_PREF_CONFIG := xhdpi
+   
 # Boot animation
-TARGET_SCREEN_HEIGHT := 1920
-TARGET_SCREEN_WIDTH := 1080
+TARGET_SCREEN_HEIGHT := 1280
+TARGET_SCREEN_WIDTH := 720
 
 # call dalvik heap config
 $(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
@@ -76,8 +72,8 @@ $(call inherit-product-if-exists, frameworks/native/build/phone-xxhdpi-2048-hwui
 PRODUCT_PACKAGES += \
     audiod \
     audio.a2dp.default \
-    audio_policy.msm8974 \
-    audio.primary.msm8974 \
+    audio_policy.msm8226 \
+    audio.primary.msm8226 \
     audio.r_submix.default \
     audio.usb.default \
     libqcompostprocbundle \
@@ -85,7 +81,6 @@ PRODUCT_PACKAGES += \
     libqcomvoiceprocessing \
     libqcomvoiceprocessingdescriptors \
     tinymix
-#    libaudio-resampler \
 
 # Audio configuration
 PRODUCT_COPY_FILES += \
@@ -97,7 +92,7 @@ PRODUCT_COPY_FILES += \
 # Camera
 PRODUCT_PACKAGES += \
     libxml2 \
-    camera.msm8974 \
+    camera.msm8226 \
     libshim_camera \
     Snap
 
@@ -108,10 +103,10 @@ PRODUCT_PACKAGES += \
 
 # Display
 PRODUCT_PACKAGES += \
-    copybit.msm8974 \
-    gralloc.msm8974 \
-    hwcomposer.msm8974 \
-    memtrack.msm8974 \
+    copybit.msm8226 \
+    gralloc.msm8226 \
+    hwcomposer.msm8226 \
+    memtrack.msm8226 \
     liboverlay 
 
 # Ebtables
@@ -151,33 +146,18 @@ PRODUCT_PACKAGES += \
 
 # Keystore
 PRODUCT_PACKAGES += \
-    keystore.msm8974
+    keystore.msm8226
 
 # Lights
 PRODUCT_PACKAGES += \
-    lights.msm8974
+    lights.msm8226
 
 # IR packages
 PRODUCT_PACKAGES += \
-    consumerir.msm8974
+    consumerir.msm8226
 
 PRODUCT_COPY_FILES += \
-    frameworks/native/data/etc/android.hardware.consumerir.xml:system/etc/permissions/android.hardware.consumerir.xml
-
-# NFC
-PRODUCT_PACKAGES += \
-    nfc_nci.bcm2079x.default \
-    NfcNci \
-    Tag \
-    com.android.nfc_extras
-
-PRODUCT_COPY_FILES += \
-    frameworks/native/data/etc/android.hardware.nfc.hce.xml:system/etc/permissions/android.hardware.nfc.hce.xml \
-    frameworks/native/data/etc/android.hardware.nfc.xml:system/etc/permissions/android.hardware.nfc.xml \
-    frameworks/native/data/etc/com.android.nfc_extras.xml:system/etc/permissions/com.android.nfc_extras.xml \
-    $(LOCAL_PATH)/nfc/libnfc-brcm.conf:system/etc/libnfc-brcm.conf \
-    $(LOCAL_PATH)/nfc/libnfc-brcm-20791b05.conf:system/etc/libnfc-brcm-20791b05.conf \
-    $(LOCAL_PATH)/nfc/nfcee_access.xml:system/etc/nfcee_access.xml    
+    frameworks/native/data/etc/android.hardware.consumerir.xml:system/etc/permissions/android.hardware.consumerir.xml  
 
 # Media
 PRODUCT_COPY_FILES += \
@@ -211,13 +191,10 @@ PRODUCT_PACKAGES += \
     libOmxVdec \
     libOmxVenc \
     libstagefrighthw 
-#    libOmxVidcCommon \
-#    libextmedia_jni \
-#    libstagefright_soft_flacdec 
-
+	
 # Power
 PRODUCT_PACKAGES += \
-    power.msm8974
+    power.msm8226
 
 # Doze mode
 PRODUCT_PACKAGES += \
@@ -248,9 +225,8 @@ PRODUCT_PACKAGES += \
 
 # Thermal config
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/etc/thermal-engine-8974.conf:system/etc/thermal-engine-8974.conf \
-    $(LOCAL_PATH)/etc/thermal-engine-8974pro.conf:system/etc/thermal-engine-8974pro.conf
-
+    $(LOCAL_PATH)/etc/thermal-engine-8226.conf:system/etc/thermal-engine-8226.conf
+	
 # USB
 PRODUCT_PACKAGES += \
     com.android.future.usb.accessory
@@ -298,16 +274,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/etc/quipc.conf:system/etc/quipc.conf \
     $(LOCAL_PATH)/etc/sap.conf:system/etc/sap.conf 
 
-# etc
-#    $(LOCAL_PATH)/bluetooth/data/audio.conf:system/etc/bluetooth/audio.conf \
-#    $(LOCAL_PATH)/bluetooth/data/auto_pairing.conf:system/etc/bluetooth/auto_pairing.conf \
-#    $(LOCAL_PATH)/bluetooth/data/blacklist.conf:system/etc/bluetooth/blacklist.conf \
-#    $(LOCAL_PATH)/bluetooth/data/input.conf:system/etc/bluetooth/input.conf \
-#    $(LOCAL_PATH)/bluetooth/data/main.conf:system/etc/bluetooth/main.conf \
-#    $(LOCAL_PATH)/bluetooth/data/network.conf:system/etc/bluetooth/network.conf \
-#    $(LOCAL_PATH)/etc/bluetooth/bt_did.conf:system/etc/bluetooth/bt_did.conf \
-#    $(LOCAL_PATH)/etc/bluetooth/bt_stack.conf:system/etc/bluetooth/bt_stack.conf \
-
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/etc/init.qcom.bt.sh:system/etc/init.qcom.bt.sh \
     $(LOCAL_PATH)/etc/init.qcom.fm.sh:system/etc/init.qcom.fm.sh \
@@ -326,16 +292,3 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/usr/keylayout/synaptics_rmi4_i2c.kl:system/usr/keylayout/synaptics_rmi4_i2c.kl \
     $(LOCAL_PATH)/usr/keylayout/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl \
     $(LOCAL_PATH)/usr/keylayout/Generic.kl:system/usr/keylayout/Generic.kl
-
-# Telephony
-#PRODUCT_COPY_FILES += \
-#    $(LOCAL_PATH)/etc/telephony/default_static_config.xml:system/etc/telephony/default_static_config.xml \
-#    $(LOCAL_PATH)/etc/telephony/N958St_Z0-.xml:system/etc/telephony/N958St_Z0-.xml \
-#    $(LOCAL_PATH)/etc/telephony/NX505J_Z0-0.xml:system/etc/telephony/NX505J_Z0-0.xml \
-#    $(LOCAL_PATH)/etc/telephony/NX507J_Z0-0.xml:system/etc/telephony/NX507J_Z0-0.xml \
-#    $(LOCAL_PATH)/etc/telephony/NX508H-0.xml:system/etc/telephony/NX508H-0.xml \
-#    $(LOCAL_PATH)/etc/telephony/NX511J_Z0-1.xml:system/etc/telephony/NX511J_Z0-1.xml \
-#    $(LOCAL_PATH)/etc/telephony/NX512J-3.xml:system/etc/telephony/NX512J-3.xml \
-#    $(LOCAL_PATH)/etc/telephony/NX512J_Z0-1.xml:system/etc/telephony/NX512J_Z0-1.xml \
-#    $(LOCAL_PATH)/etc/telephony/NX512J_Z78-1.xml:system/etc/telephony/NX512J_Z78-1.xml \
-#    $(LOCAL_PATH)/etc/telephony/NX513J_Z78-1.xml:system/etc/telephony/NX513J_Z78-1.xml

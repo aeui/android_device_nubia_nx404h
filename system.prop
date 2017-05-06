@@ -1,5 +1,5 @@
 #
-# system.prop for NX505J Z7 MAX
+# system.prop for NX505J z5s mini
 #
 ro.vendor.extension_library=/vendor/lib/libqti-perfd-client.so
 
@@ -20,20 +20,10 @@ ro.qualcomm.bluetooth.pbap=true
 
 rild.libpath=/system/vendor/lib/libril-qc-qmi-1.so
 rild.libargs=-d /dev/smd0
-#persist.rild.nitz_plmn=
-#persist.rild.nitz_long_ons_0=
-#persist.rild.nitz_long_ons_1=
-#persist.rild.nitz_long_ons_2=
-#persist.rild.nitz_long_ons_3=
-#persist.rild.nitz_short_ons_0=
-#persist.rild.nitz_short_ons_1=
-#persist.rild.nitz_short_ons_2=
-#persist.rild.nitz_short_ons_3=
 ril.subscription.types=NV,RUIM
 ro.ril.enable.amr.wideband=1
 DEVICE_PROVISIONED=1
 persist.radio.rat_on=combine
-persist.radio.multisim.config=dsds
 ro.telephony.default_network=10
 ro.telephony.default_cdma_sub=0
 #ro.ril.force_eri_from_xml=true
@@ -53,7 +43,7 @@ debug.composition.type=c2d
 persist.hwc.mdpcomp.enable=true
 debug.mdpcomp.4k2kSplit=1
 debug.mdpcomp.logs=0
-ro.sf.lcd_density=480
+ro.sf.lcd_density=320
 persist.sys.strictmode.disable=true
 dev.pm.dyn_samplingrate=1
 persist.demo.hdmirotationlock=false
@@ -144,9 +134,6 @@ persist.audio.fluence.speaker=false
 ro.qc.sdk.sensors.gestures=true
 ro.qc.sdk.gestures.camera=false
 ro.qc.sdk.camera.facialproc=false
-# system prop for NFC DT
-ro.nfc.port=I2C
-persist.factory.nfc_additional=true
 
 #Buffer size in kbytes for compress offload playback
 audio.offload.buffer.size.kb=32
@@ -166,11 +153,11 @@ persist.sys.ssr.restart_level=3
 persist.sys.ap.restart_level=0
 
 #wifi and bt name
-persist.sys.bluetooth.name=nubia Z7 max
-persist.sys.wifi.p2pname=nubia Z7 max
-persist.sys.wifi.softapname=nubia Z7 max
+persist.sys.bluetooth.name=nubia z5s mini
+persist.sys.wifi.p2pname=nubia z5s mini
+persist.sys.wifi.softapname=nubia z5s mini
 #device name
-ro.config.devicename=nubia Z7 max
+ro.config.devicename=nubia z5s mini
 
 #set primary card enabled
 persist.radio.primarycard=false
@@ -204,6 +191,6 @@ persist.sys.wfd.zsink_support=1
 persist.sys.wfd.1080p_support=true
 
 #add model number
-persist.sys.modelnumber=NX505J
+persist.sys.modelnumber=NX404H
 
 dalvik.vm.dex2oat-swap=false
