@@ -29,6 +29,8 @@ TARGET_RIL_VARIANT := caf
 # Assert
 TARGET_OTA_ASSERT_DEVICE := NX404H,NX405H,nx404h,nx404h
 
+BLOCK_BASED_OTA := false
+
 # Partitions
 BOARD_BOOTIMAGE_PARTITION_SIZE := 16777216
 BOARD_CACHEIMAGE_PARTITION_SIZE := 524288000
@@ -67,8 +69,9 @@ BOARD_KERNEL_CMDLINE := console=null androidboot.hardware=qcom user_debug=23 msm
 BOARD_KERNEL_SEPARATED_DT := true
 BOARD_KERNEL_BASE := 0x00000000
 BOARD_KERNEL_PAGESIZE := 2048
+#TARGET_KERNEL_CROSS_COMPILE_PREFIX := arm-linux-androideabi-
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x02000000 --tags_offset 0x01E00000
-TARGET_KERNEL_CROSS_COMPILE_PREFIX := $(ANDROID_BUILD_TOP)/prebuilts/gcc/linux-x86/arm/arm-cortex_a15-linux-gnueabihf-linaro_4.9/bin/arm-cortex_a15-linux-gnueabihf-
+KERNEL_TOOLCHAIN_PREFIX := $(ANDROID_BUILD_TOP)/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9/bin/arm-linux-androideabi-
 TARGET_KERNEL_SOURCE := kernel/NUBIA/MSM8226
 TARGET_KERNEL_ARCH := arm
 BOARD_CUSTOM_BOOTIMG_MK := $(LOCAL_PATH)/mkbootimg.mk
