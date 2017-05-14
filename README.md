@@ -2,14 +2,14 @@ Copyright 2015 - 2016 The CyanogenMod Project
 
 Copyright 2017 The LineageOS Project
 
-Device configuration for Nubia Z7 MAX.
+Device configuration for Nubia Z5S MINI.
 =====================================
 
 Basic   | Spec Sheet
 -------:|:-------------------------
 CPU     | Quad-core 1,2 GHz Krait 400
 CHIPSET | Qualcomm MSM8228 Snapdragon 400
-GPU     | Adreno 330
+GPU     | Adreno 305
 SIM     |  SIM (Micro-SIM)
 Memory  | 2GB RAM
 Shipped Android Version | 4.4.2 (KitKat)
