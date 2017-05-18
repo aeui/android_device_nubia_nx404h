@@ -94,7 +94,7 @@ PRODUCT_PACKAGES += \
     libxml2 \
     camera.msm8226 \
     libshim_camera \
-    Snap
+    Camera2
 
 # Connectivity Engine support
 PRODUCT_PACKAGES += \
