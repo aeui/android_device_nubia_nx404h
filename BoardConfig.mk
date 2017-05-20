@@ -1,5 +1,4 @@
 #
-# Copyright (C) 2014 The CyanogenMod Project
 #           (C) 2017 The LineageOS Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -19,12 +18,11 @@
 
 LOCAL_PATH := device/NUBIA/NX404H
 
-PRODUCT_COPY_FILES := $(filter-out frameworks/base/data/keyboards/AVRCP.kl:system/usr/keylayout/AVRCP.kl \
-	frameworks/base/data/keyboards/Generic.kl:system/usr/keylayout/Generic.kl \
-	frameworks/base/data/keyboards/Generic.kcm:system/usr/keychars/Generic.kcm, $(PRODUCT_COPY_FILES))
+PRODUCT_COPY_FILES := $(filter-out frameworks/base/data/keyboards/Generic.kl:system/usr/keylayout/Generic.kl, $(PRODUCT_COPY_FILES))
 
 # RIL
 TARGET_RIL_VARIANT := caf
+PROTOBUF_SUPPORTED := true
 
 # Assert
 TARGET_OTA_ASSERT_DEVICE := NX404H,NX405H,nx404h,nx404h
@@ -33,10 +31,10 @@ BLOCK_BASED_OTA := false
 
 # Partitions
 BOARD_BOOTIMAGE_PARTITION_SIZE := 16777216
-BOARD_CACHEIMAGE_PARTITION_SIZE := 524288000
+BOARD_CACHEIMAGE_PARTITION_SIZE := 268435456
 BOARD_RECOVERYIMAGE_PARTITION_SIZE := 25165824
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 1610612736
-BOARD_USERDATAIMAGE_PARTITION_SIZE := 28248620544
+BOARD_USERDATAIMAGE_PARTITION_SIZE := 12738083840
 
 # Bootloader
 TARGET_BOOTLOADER_BOARD_NAME := MSM8226
@@ -56,14 +54,9 @@ TARGET_CPU_ABI2 := armeabi
 TARGET_CPU_VARIANT := krait
 TARGET_USE_QCOM_BIONIC_OPTIMIZATION := true
 
-# Krait optimizations
-TARGET_USE_KRAIT_BIONIC_OPTIMIZATION:= true
-TARGET_USE_KRAIT_PLD_SET := true
-TARGET_KRAIT_BIONIC_PLDOFFS := 10
-TARGET_KRAIT_BIONIC_PLDTHRESH := 10
-TARGET_KRAIT_BIONIC_BBTHRESH := 64
-TARGET_KRAIT_BIONIC_PLDSIZE := 64
-
+# Shutdown
+TARGET_INIT_UMOUNT_AND_FSCK_IS_UNSAFE := true
+ 
 # Kernel
 BOARD_KERNEL_CMDLINE := console=null androidboot.hardware=qcom user_debug=23 msm_rtb.filter=0x37 ehci-hcd.park=3 androidboot.bootdevice=msm_sdcc.1 androidboot.selinux=permissive
 BOARD_KERNEL_SEPARATED_DT := true
@@ -84,16 +77,14 @@ BOARD_USES_ALSA_AUDIO := true
 AUDIO_FEATURE_ENABLED_COMPRESS_VOIP := false
 AUDIO_FEATURE_ENABLED_NEW_SAMPLE_RATE := true
 AUDIO_FEATURE_ENABLED_MULTI_VOICE_SESSIONS := true
-AUDIO_FEATURE_LOW_LATENCY_PRIMARY := true
-AUDIO_FEATURE_ENABLED_ANC_HEADSET := true
-AUDIO_FEATURE_ENABLED_LOW_LATENCY_CAPTURE := true
+#AUDIO_FEATURE_LOW_LATENCY_PRIMARY := true
+#AUDIO_FEATURE_ENABLED_ANC_HEADSET := true
+#AUDIO_FEATURE_ENABLED_LOW_LATENCY_CAPTURE := true
 AUDIO_FEATURE_ENABLED_HWDEP_CAL := true
 AUDIO_FEATURE_ENABLED_FLUENCE := true
 USE_CUSTOM_AUDIO_POLICY := 1
 
 # FM
-#QCOM_FM_ENABLED := true
-#AUDIO_FEATURE_ENABLED_FM := true
 BOARD_HAVE_QCOM_FM := true
 AUDIO_FEATURE_ENABLED_FM_POWER_OPT := true
 
@@ -143,6 +134,11 @@ BOARD_GLOBAL_CFLAGS += -DCAMERA_VENDOR_L_COMPAT
 TARGET_HAS_LEGACY_CAMERA_HAL1 := true
 TARGET_NEEDS_PLATFORM_TEXT_RELOCATIONS := true
 TARGET_USE_COMPAT_GRALLOC_ALIGN := true
+
+# GPS
+BOARD_VENDOR_QCOM_LOC_PDK_FEATURE_SET := true
+USE_DEVICE_SPECIFIC_GPS := true
+USE_DEVICE_SPECIFIC_LOC_API := true
 
 # RPC
 TARGET_NO_RPC := true
@@ -194,37 +190,28 @@ TARGET_USES_QCOM_WCNSS_QMI := true
 TARGET_PROVIDES_WCNSS_QMI := true
 
 # Recovery
-BOARD_SUPPRESS_EMMC_WIPE := true
-BOARD_HAS_NO_SELECT_BUTTON := true
-BOARD_RECOVERY_SWIPE := true
-TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
-TARGET_USERIMAGES_USE_EXT4 := true
-TARGET_USERIMAGES_USE_F2FS := true
-BOARD_HAS_LARGE_FILESYSTEM := true
-BOARD_RECOVERY_SWIPE := true
-TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/rootdir/etc/fstab.qcom
+#RECOVERY_VARIANT := twrp
+#TARGET_KEYMASTER_WAIT_FOR_QSEE := true
 TARGET_RECOVERY_QCOM_RTC_FIX := true
-
-# TWRP recovery
-ifeq ($(WITH_TWRP),true)
-RECOVERY_VARIANT := twrp
-RECOVERY_SDCARD_ON_DATA := true
-BOARD_SUPPRESS_SECURE_ERASE := true
-TW_USE_TOOLBOX := true
+ifneq ($(RECOVERY_VARIANT),twrp)
+TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/recovery/recovery.fstab
+else
+TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/recovery/twrp.fstab
 TW_TARGET_USES_QCOM_BSP := true
 TW_THEME := portrait_hdpi
+#TW_USE_TOOLBOX := true
+TW_NO_USB_STORAGE := true
 TW_INCLUDE_CRYPTO := true
-TW_IGNORE_MISC_WIPE_DATA := true
-TARGET_CRYPTFS_HW_PATH := vendor/qcom/opensource/cryptfs_hw
-TW_INCLUDE_NTFS_3G := true
-TW_NO_SCREEN_BLANK := true
-TW_DEVICE_VERSION := 1
-
+TW_INCLUDE_L_CRYPTO := true
+BOARD_SUPPRESS_SECURE_ERASE := true
+TW_INTERNAL_STORAGE_PATH := "/data/media"
+TW_INTERNAL_STORAGE_MOUNT_POINT := "data"
+RECOVERY_SDCARD_ON_DATA := true
+BOARD_HAS_NO_REAL_SDCARD := true
 TW_BRIGHTNESS_PATH := /sys/class/leds/lcd-backlight/brightness
-PRODUCT_COPY_FILES += \
-	bionic/libc/zoneinfo/tzdata:recovery/root/system/usr/share/zoneinfo/tzdata \
-	$(LOCAL_PATH)/recovery/twrp.fstab:recovery/root/etc/twrp.fstab
 endif
+TARGET_USERIMAGES_USE_EXT4 := true
+TARGET_USERIMAGES_USE_F2FS := true
 
 # dex-preoptimization to speed up first boot sequence
 #WITH_DEXPREOPT := false
@@ -233,3 +220,6 @@ endif
 include device/qcom/sepolicy/sepolicy.mk
 BOARD_SEPOLICY_DIRS += device/NUBIA/NX404H/sepolicy
 
+# Radio
+ADD_RADIO_FILES := true
+TARGET_RELEASETOOLS_EXTENSIONS := $(LOCAL_PATH)
