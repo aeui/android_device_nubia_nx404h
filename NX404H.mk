@@ -267,14 +267,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libion
 
-<<<<<<< HEAD
 # GPS configuration
-=======
-# GPS
-PRODUCT_PACKAGES += \
-    gps.msm8226
-
->>>>>>> 73a7084d1a5ebe21b9ba067d07db3a4d74a0efc1
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/etc/flp.conf:system/etc/flp.conf \
     $(LOCAL_PATH)/etc/gps.conf:system/etc/gps.conf \
