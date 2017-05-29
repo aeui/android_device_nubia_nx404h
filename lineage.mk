@@ -1,3 +1,4 @@
+# Copyright (C) 2014 The CyanogenMod Project
 #           (C) 2017 The LineageOS Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,19 +19,18 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 # Inherit from NX404H device
 $(call inherit-product, device/NUBIA/NX404H/NX404H.mk)
 
-
 # Inherit some common LineageOS stuff.
 $(call inherit-product, vendor/cm/config/common_full_phone.mk)
 
 PRODUCT_NAME := lineage_NX404H
 PRODUCT_DEVICE := NX404H
-PRODUCT_MANUFACTURER := Nubia
+PRODUCT_MANUFACTURER := NUBIA
 PRODUCT_MODEL := NX404H
 
 PRODUCT_GMS_CLIENTID_BASE := android-zte
 
-PRODUCT_BRAND := Nubia
-TARGET_VENDOR := Nubia
+PRODUCT_BRAND := NUBIA
+TARGET_VENDOR := NUBIA
 TARGET_VENDOR_PRODUCT_NAME := NX404H
 TARGET_VENDOR_DEVICE_NAME := NX404H
 PRODUCT_BUILD_PROP_OVERRIDES += TARGET_DEVICE=NX404H PRODUCT_NAME=NX404H

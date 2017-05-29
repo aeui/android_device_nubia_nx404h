@@ -1,5 +1,6 @@
 /*
- * Copyright (C) 2016 The CyanogenMod Project
+ * Copyright (C) 2012 The Android Open Source Project
+ * Copyright (C) 2012 The CyanogenMod Project <http://www.cyanogenmod.org>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,7 +20,7 @@
 
 #define BLUETOOTH_QTI_SW     TRUE
 
-#define BTM_DEF_LOCAL_NAME   "Nubia Z5S Mini"
+#define BTM_DEF_LOCAL_NAME   "ZTE NUBIA NX404H"
 // Disables read remote device feature
 #define BTA_SKIP_BLE_READ_REMOTE_FEAT FALSE
 #define MAX_L2CAP_CHANNELS 16

@@ -1,4 +1,5 @@
 #
+# Copyright (C) 2014 The CyanogenMod Project
 #           (C) 2017 The LineageOS Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -56,7 +57,11 @@ PRODUCT_COPY_FILES += \
 # Screen density
 PRODUCT_AAPT_CONFIG := normal
 PRODUCT_AAPT_PREF_CONFIG := xhdpi
-   
+
+#ADDITIONAL_DEFAULT_PROPERTIES += \
+#    ro.secure=0 \
+#    ro.adb.secure=0
+    
 # Boot animation
 TARGET_SCREEN_HEIGHT := 1280
 TARGET_SCREEN_WIDTH := 720
@@ -71,8 +76,8 @@ $(call inherit-product-if-exists, frameworks/native/build/phone-xxhdpi-2048-hwui
 PRODUCT_PACKAGES += \
     audiod \
     audio.a2dp.default \
-    audio_policy.msm8226 \
-    audio.primary.msm8226 \
+    audio_policy.msm8974 \
+    audio.primary.msm8974 \
     audio.r_submix.default \
     audio.usb.default \
     libqcompostprocbundle \
@@ -80,6 +85,7 @@ PRODUCT_PACKAGES += \
     libqcomvoiceprocessing \
     libqcomvoiceprocessingdescriptors \
     tinymix
+#    libaudio-resampler \
 
 # Audio configuration
 PRODUCT_COPY_FILES += \
@@ -91,9 +97,9 @@ PRODUCT_COPY_FILES += \
 # Camera
 PRODUCT_PACKAGES += \
     libxml2 \
-    camera.msm8226 \
+    camera.msm8974 \
     libshim_camera \
-    Camera2
+    Camera
 
 # Connectivity Engine support
 PRODUCT_PACKAGES += \
@@ -102,10 +108,10 @@ PRODUCT_PACKAGES += \
 
 # Display
 PRODUCT_PACKAGES += \
-    copybit.msm8226 \
-    gralloc.msm8226 \
-    hwcomposer.msm8226 \
-    memtrack.msm8226 \
+    copybit.msm8974 \
+    gralloc.msm8974 \
+    hwcomposer.msm8974 \
+    memtrack.msm8974 \
     liboverlay 
 
 # Ebtables
@@ -130,7 +136,11 @@ PRODUCT_PACKAGES += \
     FM2 \
     libqcomfm_jni \
     qcom.fmradio
-    
+
+# LOWI
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/etc/lowi.conf:system/etc/lowi.conf
+
 # IRSC
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/etc/sec_config:system/etc/sec_config
@@ -141,11 +151,11 @@ PRODUCT_PACKAGES += \
 
 # Keystore
 PRODUCT_PACKAGES += \
-    keystore.msm8226
+    keystore.msm8974
 
 # Lights
 PRODUCT_PACKAGES += \
-    lights.msm8226
+    lights.msm8974
 
 # Media
 PRODUCT_COPY_FILES += \
@@ -162,7 +172,11 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/wifi/WCNSS_qcom_cfg.ini:system/etc/wifi/WCNSS_qcom_cfg.ini \
     $(LOCAL_PATH)/wifi/WCNSS_qcom_wlan_nv.bin:system/etc/firmware/wlan/prima/WCNSS_qcom_wlan_nv.bin \
     $(LOCAL_PATH)/wifi/wifi_info:system/etc/wifi/wifi_info
-          
+      
+# country for infrared
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/etc/init.d/66country:system/etc/init.d/66country
+    
 # OMX
 PRODUCT_PACKAGES += \
     libc2dcolorconvert \
@@ -175,10 +189,13 @@ PRODUCT_PACKAGES += \
     libOmxVdec \
     libOmxVenc \
     libstagefrighthw 
-	
+#    libOmxVidcCommon \
+#    libextmedia_jni \
+#    libstagefright_soft_flacdec 
+
 # Power
 PRODUCT_PACKAGES += \
-    power.msm8226
+    power.msm8974
 
 # Doze mode
 PRODUCT_PACKAGES += \
@@ -190,13 +207,15 @@ PRODUCT_PACKAGES += \
 
 # Ramdisk
 PRODUCT_PACKAGES += \
+    init.rc \
     fstab.qcom \
     init.nubia.sh \
     init.nubia.usb.rc \
     init.qcom.rc \
     init.recovery.qcom.rc \
     init.qcom.usb.sh \
-    ueventd.qcom.rc 
+    ueventd.qcom.rc \
+    ueventd.rc
 
 # for nubia camera app
 PRODUCT_PACKAGES += \
@@ -208,7 +227,7 @@ PRODUCT_PACKAGES += \
 # Thermal config
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/etc/thermal-engine-8226.conf:system/etc/thermal-engine-8226.conf
-	
+
 # USB
 PRODUCT_PACKAGES += \
     com.android.future.usb.accessory
@@ -248,27 +267,24 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libion
 
-# GPS
-PRODUCT_PACKAGES += \
-    gps.msm8974
-
+# GPS configuration
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/gps/flp.conf:system/etc/flp.conf \
-    $(LOCAL_PATH)/gps/gps.conf:system/etc/gps.conf \
-    $(LOCAL_PATH)/gps/izat.conf:system/etc/izat.conf \
-    $(LOCAL_PATH)/gps/quipc.conf:system/etc/quipc.conf \
-    $(LOCAL_PATH)/gps/sap.conf:system/etc/sap.conf
-
-# Bluetooth configuration
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/bluetooth/data/audio.conf:system/etc/bluetooth/audio.conf \
-    $(LOCAL_PATH)/bluetooth/data/auto_pairing.conf:system/etc/bluetooth/auto_pairing.conf \
-    $(LOCAL_PATH)/bluetooth/data/blacklist.conf:system/etc/bluetooth/blacklist.conf \
-    $(LOCAL_PATH)/bluetooth/data/input.conf:system/etc/bluetooth/input.conf \
-    $(LOCAL_PATH)/bluetooth/data/main.conf:system/etc/bluetooth/main.conf \
-    $(LOCAL_PATH)/bluetooth/data/network.conf:system/etc/bluetooth/network.conf 
+    $(LOCAL_PATH)/etc/flp.conf:system/etc/flp.conf \
+    $(LOCAL_PATH)/etc/gps.conf:system/etc/gps.conf \
+    $(LOCAL_PATH)/etc/izat.conf:system/etc/izat.conf \
+    $(LOCAL_PATH)/etc/quipc.conf:system/etc/quipc.conf \
+    $(LOCAL_PATH)/etc/sap.conf:system/etc/sap.conf 
 
 # etc
+#    $(LOCAL_PATH)/bluetooth/data/audio.conf:system/etc/bluetooth/audio.conf \
+#    $(LOCAL_PATH)/bluetooth/data/auto_pairing.conf:system/etc/bluetooth/auto_pairing.conf \
+#    $(LOCAL_PATH)/bluetooth/data/blacklist.conf:system/etc/bluetooth/blacklist.conf \
+#    $(LOCAL_PATH)/bluetooth/data/input.conf:system/etc/bluetooth/input.conf \
+#    $(LOCAL_PATH)/bluetooth/data/main.conf:system/etc/bluetooth/main.conf \
+#    $(LOCAL_PATH)/bluetooth/data/network.conf:system/etc/bluetooth/network.conf \
+#    $(LOCAL_PATH)/etc/bluetooth/bt_did.conf:system/etc/bluetooth/bt_did.conf \
+#    $(LOCAL_PATH)/etc/bluetooth/bt_stack.conf:system/etc/bluetooth/bt_stack.conf \
+
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/etc/init.qcom.bt.sh:system/etc/init.qcom.bt.sh \
     $(LOCAL_PATH)/etc/init.qcom.fm.sh:system/etc/init.qcom.fm.sh \
@@ -281,6 +297,8 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/usr/idc/cyttsp4_mt.idc:system/usr/idc/cyttsp4_mt.idc \
     $(LOCAL_PATH)/usr/idc/input_proxy.idc:system/usr/idc/input_proxy.idc \
+    $(LOCAL_PATH)/usr/keychars/Generic.kcm:system/usr/keychars/Generic.kcm \
+    $(LOCAL_PATH)/usr/keylayout/AVRCP.kl:system/usr/keylayout/AVRCP.kl \
     $(LOCAL_PATH)/usr/keylayout/atmel_mxt_ts.kl:system/usr/keylayout/atmel_mxt_ts.kl \
     $(LOCAL_PATH)/usr/keylayout/synaptics_rmi4_i2c.kl:system/usr/keylayout/synaptics_rmi4_i2c.kl \
     $(LOCAL_PATH)/usr/keylayout/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl \
