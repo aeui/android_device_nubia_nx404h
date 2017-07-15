@@ -166,7 +166,14 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/etc/init.d/66country:system/etc/init.d/66country
     
 # OMX
+PRODUCT_PACKAGES += \
+    libc2dcolorconvert \
+    libdivxdrmdecrypt \
+    libOmxAacEnc \
+    libOmxAmrEnc \
     libOmxCore \
+    libOmxEvrcEnc \
+    libOmxQcelp13Enc \
     libOmxVdec \
     libOmxVenc \
     libstagefrighthw
