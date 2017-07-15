@@ -15,6 +15,9 @@
 -->
 
 <resources>
+
+    <bool name="world_phone">true</bool>
+
     <!-- Determine whether calls to mute the microphone in PhoneUtils
                   are routed through the android.media.AudioManager class (true) or through
          the com.android.internal.telephony.Phone interface (false). -->
@@ -34,4 +37,7 @@
     <bool name="config_show_apn_setting_cdma">true</bool>
 
     <bool name="config_uplmn_for_usim">true</bool>
+    <!-- Flag whether to enable Proximity setting-->
+    <bool name="config_proximity_enable" translatable="false">true</bool>
+
 </resources>

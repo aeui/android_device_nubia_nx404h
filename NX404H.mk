@@ -1,6 +1,5 @@
 #
 # Copyright (C) 2014 The CyanogenMod Project
-#           (C) 2017 The LineageOS Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -57,75 +56,61 @@ PRODUCT_COPY_FILES += \
 # Screen density
 PRODUCT_AAPT_CONFIG := normal
 PRODUCT_AAPT_PREF_CONFIG := xhdpi
+PRODUCT_AAPT_PREBUILT_DPI := xhdpi 280dpi hdpi tvdpi mdpi ldpi
 
-#ADDITIONAL_DEFAULT_PROPERTIES += \
-#    ro.secure=0 \
-#    ro.adb.secure=0
-    
-# Boot animation
 TARGET_SCREEN_HEIGHT := 1280
 TARGET_SCREEN_WIDTH := 720
 
-# call dalvik heap config
-$(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
-
-# call hwui memory config
-$(call inherit-product-if-exists, frameworks/native/build/phone-xxhdpi-2048-hwui-memory.mk)
+$(call inherit-product, frameworks/native/build/phone-xhdpi-1024-dalvik-heap.mk)
 
 # Audio
 PRODUCT_PACKAGES += \
     audiod \
     audio.a2dp.default \
-    audio_policy.msm8974 \
-    audio.primary.msm8974 \
+    audio.primary.msm8226 \
     audio.r_submix.default \
-    audio.usb.default \
+    audio.usb.default
+
+PRODUCT_PACKAGES += \
+    libaudio-resampler \
     libqcompostprocbundle \
     libqcomvisualizer \
     libqcomvoiceprocessing \
-    libqcomvoiceprocessingdescriptors \
     tinymix
-#    libaudio-resampler \
 
 # Audio configuration
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/audio/audio_effects.conf:system/vendor/etc/audio_effects.conf \
-    $(LOCAL_PATH)/audio/audio_platform_info.xml:system/etc/audio_platform_info.xml \
-    $(LOCAL_PATH)/audio/audio_policy.conf:system/etc/audio_policy.conf \
-    $(LOCAL_PATH)/audio/mixer_paths.xml:system/etc/mixer_paths.xml
+    $(LOCAL_PATH)/configs/audio_platform_info.xml:system/etc/audio_platform_info.xml \
+    $(LOCAL_PATH)/configs/audio_effects.conf:system/vendor/etc/audio_effects.conf \
+    $(LOCAL_PATH)/configs/audio_policy.conf:system/etc/audio_policy.conf \
+    $(LOCAL_PATH)/configs/mixer_paths.xml:system/etc/mixer_paths.xmlml
 
 # Camera
 PRODUCT_PACKAGES += \
+    camera.msm8226 \
     libxml2 \
-    camera.msm8974 \
-    libshim_camera \
-    Camera
+    Snap
 
 # Connectivity Engine support
 PRODUCT_PACKAGES += \
-    libcnefeatureconfig \
-    librmnetctl
+    libcnefeatureconfig
+
+# Storage
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.sys.sdcardfs=true
 
 # Display
 PRODUCT_PACKAGES += \
-    copybit.msm8974 \
-    gralloc.msm8974 \
-    hwcomposer.msm8974 \
-    memtrack.msm8974 \
-    liboverlay 
+    copybit.msm8226 \
+    gralloc.msm8226 \
+    hwcomposer.msm8226 \
+    memtrack.msm8226
 
 # Ebtables
 PRODUCT_PACKAGES += \
     ebtables \
     ethertypes \
-    libebtc \
-    curl \
-    libnl_2 \
-    libbson
-
-# Browser
-PRODUCT_PACKAGES += \
-    Gello
+    libebtc
 
 # Filesystem
 PRODUCT_PACKAGES += \
@@ -149,13 +134,17 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     libboringssl-compat
 
+# Stlport
+PRODUCT_PACKAGES += \
+    libstlport
+
 # Keystore
 PRODUCT_PACKAGES += \
-    keystore.msm8974
+    keystore.msm8226
 
 # Lights
 PRODUCT_PACKAGES += \
-    lights.msm8974
+    lights.msm8226
 
 # Media
 PRODUCT_COPY_FILES += \
@@ -163,14 +152,13 @@ PRODUCT_COPY_FILES += \
     frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:system/etc/media_codecs_google_telephony.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:system/etc/media_codecs_google_video.xml \
     $(LOCAL_PATH)/etc/media_codecs.xml:system/etc/media_codecs.xml \
-    $(LOCAL_PATH)/etc/media_codecs_performance.xml:system/etc/media_codecs_performance.xml \
     $(LOCAL_PATH)/etc/media_profiles.xml:system/etc/media_profiles.xml
 
 # WiFi
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/wifi/WCNSS_cfg.dat:system/etc/firmware/wlan/prima/WCNSS_cfg.dat \
     $(LOCAL_PATH)/wifi/WCNSS_qcom_cfg.ini:system/etc/wifi/WCNSS_qcom_cfg.ini \
-    $(LOCAL_PATH)/wifi/WCNSS_qcom_wlan_nv.bin:system/etc/firmware/wlan/prima/WCNSS_qcom_wlan_nv.bin \
+    $(LOCAL_PATH)/wifi/WCNSS_qcom_wlan_nv.bin:system/etc/wifi/WCNSS_qcom_wlan_nv.bin \
     $(LOCAL_PATH)/wifi/wifi_info:system/etc/wifi/wifi_info
       
 # country for infrared
@@ -178,51 +166,47 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/etc/init.d/66country:system/etc/init.d/66country
     
 # OMX
-PRODUCT_PACKAGES += \
-    libc2dcolorconvert \
-    libdivxdrmdecrypt \
-    libOmxAacEnc \
-    libOmxAmrEnc \
     libOmxCore \
-    libOmxEvrcEnc \
-    libOmxQcelp13Enc \
     libOmxVdec \
     libOmxVenc \
-    libstagefrighthw 
-#    libOmxVidcCommon \
-#    libextmedia_jni \
-#    libstagefright_soft_flacdec 
+    libstagefrighthw
 
 # Power
 PRODUCT_PACKAGES += \
-    power.msm8974
+    power.msm8226
 
-# Doze mode
-PRODUCT_PACKAGES += \
-    NubiaDoze
-
-# FlipFlap app
-PRODUCT_PACKAGES += \
-    FlipFlap
+#enable/disable softkey script
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/etc/set_softkey.sh:system/bin/set_softkey.sh
 
 # Ramdisk
 PRODUCT_PACKAGES += \
-    init.rc \
     fstab.qcom \
+    init.class_main.sh \
+    init.mdm.sh \
     init.nubia.sh \
     init.nubia.usb.rc \
+    init.qcom.early_boot.sh \
+    init.qcom.factory.sh \
     init.qcom.rc \
     init.recovery.qcom.rc \
+    init.qcom.sh \
+    init.qcom.ssr.sh \
+    init.qcom.usb.rc \
     init.qcom.usb.sh \
+    init.qcom.power.rc \
+    init.target.rc \
+    init.trace.rc \
     ueventd.qcom.rc \
     ueventd.rc
 
 # for nubia camera app
 PRODUCT_PACKAGES += \
-    libshim_nubia
+    libnubia
 
+# Gello
 PRODUCT_PACKAGES += \
-    libshim_wvm
+    Gello
 
 # Thermal config
 PRODUCT_COPY_FILES += \
@@ -234,6 +218,7 @@ PRODUCT_PACKAGES += \
 
 # Wifi
 PRODUCT_PACKAGES += \
+    dhcpcd.conf \
     hostapd.accept \
     hostapd.deny \
     hostapd \
@@ -267,6 +252,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libion
 
+PRODUCT_PACKAGES += \
+    LatinIME \
+    libjni_latinime
+
 # GPS configuration
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/etc/flp.conf:system/etc/flp.conf \
@@ -276,19 +265,29 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/etc/sap.conf:system/etc/sap.conf 
 
 # etc
-#    $(LOCAL_PATH)/bluetooth/data/audio.conf:system/etc/bluetooth/audio.conf \
-#    $(LOCAL_PATH)/bluetooth/data/auto_pairing.conf:system/etc/bluetooth/auto_pairing.conf \
-#    $(LOCAL_PATH)/bluetooth/data/blacklist.conf:system/etc/bluetooth/blacklist.conf \
-#    $(LOCAL_PATH)/bluetooth/data/input.conf:system/etc/bluetooth/input.conf \
-#    $(LOCAL_PATH)/bluetooth/data/main.conf:system/etc/bluetooth/main.conf \
-#    $(LOCAL_PATH)/bluetooth/data/network.conf:system/etc/bluetooth/network.conf \
-#    $(LOCAL_PATH)/etc/bluetooth/bt_did.conf:system/etc/bluetooth/bt_did.conf \
-#    $(LOCAL_PATH)/etc/bluetooth/bt_stack.conf:system/etc/bluetooth/bt_stack.conf \
-
 PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/bluetooth/data/audio.conf:system/etc/bluetooth/audio.conf \
+    $(LOCAL_PATH)/bluetooth/data/auto_pairing.conf:system/etc/bluetooth/auto_pairing.conf \
+    $(LOCAL_PATH)/bluetooth/data/blacklist.conf:system/etc/bluetooth/blacklist.conf \
+    $(LOCAL_PATH)/bluetooth/data/input.conf:system/etc/bluetooth/input.conf \
+    $(LOCAL_PATH)/bluetooth/data/main.conf:system/etc/bluetooth/main.conf \
+    $(LOCAL_PATH)/bluetooth/data/network.conf:system/etc/bluetooth/network.conf \
+    $(LOCAL_PATH)/etc/bluetooth/bt_did.conf:system/etc/bluetooth/bt_did.conf \
+    $(LOCAL_PATH)/etc/bluetooth/bt_stack.conf:system/etc/bluetooth/bt_stack.conf \
+    $(LOCAL_PATH)/etc/hcidump.sh:system/etc/hcidump.sh \
+    $(LOCAL_PATH)/etc/hsic.control.bt.sh:system/etc/hsic.control.bt.sh \
+    $(LOCAL_PATH)/etc/init.ath3k.bt.sh:system/etc/init.ath3k.bt.sh \
+    $(LOCAL_PATH)/etc/init.crda.sh:system/etc/init.crda.sh \
+    $(LOCAL_PATH)/etc/init.qcom.uicc.sh:system/etc/init.qcom.uicc.sh \
+    $(LOCAL_PATH)/etc/init.qcom.audio.sh:system/etc/init.qcom.audio.sh \
     $(LOCAL_PATH)/etc/init.qcom.bt.sh:system/etc/init.qcom.bt.sh \
+    $(LOCAL_PATH)/etc/init.qcom.coex.sh:system/etc/init.qcom.coex.sh \
+    $(LOCAL_PATH)/etc/init.qcom.efs.sync.sh:system/etc/init.qcom.efs.sync.sh \
     $(LOCAL_PATH)/etc/init.qcom.fm.sh:system/etc/init.qcom.fm.sh \
+    $(LOCAL_PATH)/etc/init.qcom.post_boot.sh:system/etc/init.qcom.post_boot.sh \
+    $(LOCAL_PATH)/etc/init.qcom.sdio.sh:system/etc/init.qcom.sdio.sh \
     $(LOCAL_PATH)/etc/permissions/com.qualcomm.location.xml:system/etc/permissions/com.qualcomm.location.xml \
+    $(LOCAL_PATH)/etc/qca6234-service.sh:system/etc/qca6234-service.sh \
     $(LOCAL_PATH)/etc/sensor_def_qcomdev.conf:system/etc/sensor_def_qcomdev.conf \
     $(LOCAL_PATH)/etc/xtwifi.conf:system/etc/xtwifi.conf \
     $(LOCAL_PATH)/etc/hostapd/hostapd_default.conf:system/etc/hostapd/hostapd_default.conf
@@ -303,3 +302,4 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/usr/keylayout/synaptics_rmi4_i2c.kl:system/usr/keylayout/synaptics_rmi4_i2c.kl \
     $(LOCAL_PATH)/usr/keylayout/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl \
     $(LOCAL_PATH)/usr/keylayout/Generic.kl:system/usr/keylayout/Generic.kl
+
