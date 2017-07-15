@@ -74,7 +74,10 @@ TARGET_KERNEL_SOURCE := kernel/NUBIA/MSM8226
 TARGET_KERNEL_ARCH := arm
 BOARD_CUSTOM_BOOTIMG_MK := $(LOCAL_PATH)/mkbootimg.mk
 TARGET_KERNEL_CONFIG := msm8926-nx404h_defconfig
+<<<<<<< HEAD
 
+=======
+>>>>>>> parent of a34919d... nx404h to ne501j
 # Power
 TARGET_POWERHAL_VARIANT := qcom
 
