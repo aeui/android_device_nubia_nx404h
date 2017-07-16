@@ -1,5 +1,6 @@
 #
 # Copyright (C) 2014 The CyanogenMod Project
+#           (C) 2017 The LineageOS Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -20,7 +21,7 @@
 # are responsible for having their own logic, for fine-grained control.
 LOCAL_PATH := $(call my-dir)
 
-ifeq ($(TARGET_DEVICE),nx507j)
+ifeq ($(TARGET_DEVICE),NX404H)
 include $(call all-makefiles-under,$(LOCAL_PATH))
 
 include $(CLEAR_VARS)
@@ -40,9 +41,5 @@ ALL_DEFAULT_INSTALLED_MODULES += $(FIRMWARE_WCD9320_SYMLINKS)
 $(shell mkdir -p $(TARGET_OUT)/etc/firmware/wlan/prima; \
     ln -sf /data/misc/wifi/WCNSS_qcom_cfg.ini \
 	    $(TARGET_OUT)/etc/firmware/wlan/prima/WCNSS_qcom_cfg.ini)
-
-$(shell mkdir -p $(TARGET_OUT)/etc/firmware/wlan/prima; \
-    ln -sf /system/etc/wifi/WCNSS_qcom_wlan_nv.bin \
-	    $(TARGET_OUT)/etc/firmware/wlan/prima/WCNSS_qcom_wlan_nv.bin)
 
 endif
