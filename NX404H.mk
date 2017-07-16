@@ -121,6 +121,14 @@ PRODUCT_PACKAGES += \
     libnl_2 \
     libbson
 
+# CM-11.0 Calculator
+PRODUCT_PACKAGES += \
+    Calculator
+
+# Changelog
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/etc/CHANGELOG-NX404H.txt:/etc/CHANGELOG-NX404H.txt
+
 # Browser
 PRODUCT_PACKAGES += \
     Gello
