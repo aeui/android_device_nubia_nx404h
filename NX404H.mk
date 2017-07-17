@@ -272,15 +272,9 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/etc/quipc.conf:system/etc/quipc.conf \
     $(LOCAL_PATH)/etc/sap.conf:system/etc/sap.conf 
 
-# etc
-#    $(LOCAL_PATH)/bluetooth/data/audio.conf:system/etc/bluetooth/audio.conf \
-#    $(LOCAL_PATH)/bluetooth/data/auto_pairing.conf:system/etc/bluetooth/auto_pairing.conf \
-#    $(LOCAL_PATH)/bluetooth/data/blacklist.conf:system/etc/bluetooth/blacklist.conf \
-#    $(LOCAL_PATH)/bluetooth/data/input.conf:system/etc/bluetooth/input.conf \
-#    $(LOCAL_PATH)/bluetooth/data/main.conf:system/etc/bluetooth/main.conf \
-#    $(LOCAL_PATH)/bluetooth/data/network.conf:system/etc/bluetooth/network.conf \
-#    $(LOCAL_PATH)/etc/bluetooth/bt_did.conf:system/etc/bluetooth/bt_did.conf \
-#    $(LOCAL_PATH)/etc/bluetooth/bt_stack.conf:system/etc/bluetooth/bt_stack.conf \
+# OpenDelta
+PRODUCT_PACKAGES += \
+    OpenDelta
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/etc/init.qcom.bt.sh:system/etc/init.qcom.bt.sh \
