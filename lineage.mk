@@ -22,7 +22,7 @@ $(call inherit-product, device/NUBIA/NX404H/NX404H.mk)
 # Inherit some common LineageOS stuff.
 $(call inherit-product, vendor/cm/config/common_full_phone.mk)
 
-PRODUCT_NAME := cm_NX404H
+PRODUCT_NAME := lineage_NX404H
 PRODUCT_DEVICE := NX404H
 PRODUCT_MANUFACTURER := NUBIA
 PRODUCT_MODEL := NX404H
