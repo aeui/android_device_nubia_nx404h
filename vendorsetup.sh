@@ -1,3 +1,3 @@
-add_lunch_combo lineage_nx505j-userdebug
-add_lunch_combo lineage_nx505j-eng
+add_lunch_combo lineage_X9180-userdebug
+add_lunch_combo lineage_X9180-eng
 

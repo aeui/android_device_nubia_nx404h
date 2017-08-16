@@ -16,8 +16,8 @@
 # Inherit from those products. Most specific first.
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
-# Inherit from NX505J device
-$(call inherit-product, device/nubia/nx505j/nx505j.mk)
+# Inherit from X9180 device
+$(call inherit-product, device/NUBIA/X9180/X9180.mk)
 
 # Enhanced NFC
 #$(call inherit-product, vendor/cm/config/nfc_enhanced.mk)
@@ -25,17 +25,17 @@ $(call inherit-product, device/nubia/nx505j/nx505j.mk)
 # Inherit some common LineageOS stuff.
 $(call inherit-product, vendor/cm/config/common_full_phone.mk)
 
-PRODUCT_NAME := lineage_nx505j
-PRODUCT_DEVICE := nx505j
+PRODUCT_NAME := lineage_X9180
+PRODUCT_DEVICE := X9180
 PRODUCT_MANUFACTURER := Nubia
-PRODUCT_MODEL := NX505J
+PRODUCT_MODEL := X9180
 
 PRODUCT_GMS_CLIENTID_BASE := android-zte
 
 PRODUCT_BRAND := Nubia
 TARGET_VENDOR := Nubia
-TARGET_VENDOR_PRODUCT_NAME := NX505J
-TARGET_VENDOR_DEVICE_NAME := NX505J
-PRODUCT_BUILD_PROP_OVERRIDES += TARGET_DEVICE=NX505J PRODUCT_NAME=NX505J
+TARGET_VENDOR_PRODUCT_NAME := X9180
+TARGET_VENDOR_DEVICE_NAME := X9180
+PRODUCT_BUILD_PROP_OVERRIDES += TARGET_DEVICE=X9180 PRODUCT_NAME=X9180
 
 WITH_SU := true

@@ -1,5 +1,5 @@
 #
-# system.prop for NX505J Z7 MAX
+# system.prop
 #
 ro.vendor.extension_library=/vendor/lib/libqti-perfd-client.so
 
@@ -38,7 +38,7 @@ debug.composition.type=c2d
 persist.hwc.mdpcomp.enable=true
 debug.mdpcomp.4k2kSplit=1
 debug.mdpcomp.logs=0
-ro.sf.lcd_density=480
+ro.sf.lcd_density=300
 persist.sys.strictmode.disable=true
 dev.pm.dyn_samplingrate=1
 persist.demo.hdmirotationlock=false
@@ -140,11 +140,11 @@ persist.sys.ssr.restart_level=3
 persist.sys.ap.restart_level=0
 
 #wifi and bt name
-persist.sys.bluetooth.name=nubia Z7 max
-persist.sys.wifi.p2pname=nubia Z7 max
-persist.sys.wifi.softapname=nubia Z7 max
+persist.sys.bluetooth.name=nubia V5 
+persist.sys.wifi.p2pname=nubia V5 
+persist.sys.wifi.softapname=nubia V5 
 #device name
-ro.config.devicename=nubia Z7 max
+ro.config.devicename=nubia V5 
 
 #set primary card enabled
 persist.radio.primarycard=false
@@ -178,6 +178,6 @@ persist.sys.wfd.zsink_support=1
 persist.sys.wfd.1080p_support=true
 
 #add model number
-persist.sys.modelnumber=NX505J
+persist.sys.modelnumber=X9180
 
 dalvik.vm.dex2oat-swap=false

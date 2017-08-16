@@ -15,9 +15,9 @@
 # limitations under the License.
 
 # inherit from the proprietary version
--include vendor/nubia/nx505j/BoardConfigVendor.mk
+-include vendor/NUBIA/X9180/BoardConfigVendor.mk
 
-LOCAL_PATH := device/nubia/nx505j
+LOCAL_PATH := device/NUBIA/X9180
 
 PRODUCT_COPY_FILES := $(filter-out frameworks/base/data/keyboards/AVRCP.kl:system/usr/keylayout/AVRCP.kl \
 	frameworks/base/data/keyboards/Generic.kl:system/usr/keylayout/Generic.kl \
@@ -44,13 +44,13 @@ TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/recovery/recovery.fstab
 BOARD_VENDOR := zte-qcom
 
 # Bootloader
-TARGET_BOOTLOADER_BOARD_NAME := MSM8974
+TARGET_BOOTLOADER_BOARD_NAME := MSM8226
 TARGET_NO_BOOTLOADER := true
 TARGET_NO_RADIOIMAGE := true
 
 # Platform
-TARGET_BOARD_PLATFORM := msm8974
-TARGET_BOARD_PLATFORM_GPU := qcom-adreno330
+TARGET_BOARD_PLATFORM := msm8226
+TARGET_BOARD_PLATFORM_GPU := qcom-adreno305
 USE_CLANG_PLATFORM_BUILD := true
 
 # Architecture
@@ -69,18 +69,18 @@ TARGET_KRAIT_BIONIC_PLDTHRESH := 10
 TARGET_KRAIT_BIONIC_BBTHRESH := 64
 TARGET_KRAIT_BIONIC_PLDSIZE := 64
 
-# Kernel
-KERNEL_TOOLCHAIN_PREFIX := $(ANDROID_BUILD_TOP)/prebuilts/gcc/linux-x86/arm/arm-cortex_a15-linux-gnueabihf-linaro_4.9/bin/arm-cortex_a15-linux-gnueabihf-
-BOARD_DTBTOOL_ARGS := --force-v2
+#Kernel
 BOARD_KERNEL_CMDLINE := console=null androidboot.hardware=qcom user_debug=23 msm_rtb.filter=0x37 ehci-hcd.park=3 androidboot.bootdevice=msm_sdcc.1 androidboot.selinux=permissive
 BOARD_KERNEL_SEPARATED_DT := true
 BOARD_KERNEL_BASE := 0x00000000
 BOARD_KERNEL_PAGESIZE := 2048
+#TARGET_KERNEL_CROSS_COMPILE_PREFIX := arm-linux-androideabi-
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x02000000 --tags_offset 0x01E00000
-TARGET_KERNEL_SOURCE := kernel/nubia/nx505j
+KERNEL_TOOLCHAIN_PREFIX := $(ANDROID_BUILD_TOP)/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9/bin/arm-linux-androideabi-
+TARGET_KERNEL_SOURCE := kernel/NUBIA/MSM8226
 TARGET_KERNEL_ARCH := arm
-TARGET_KERNEL_CONFIG := lineage_nx505j_defconfig
-TARGET_ZTEMT_DTS := true
+BOARD_CUSTOM_BOOTIMG_MK := $(LOCAL_PATH)/mkbootimg.mk
+TARGET_KERNEL_CONFIG := msm8926-ne501j_defconfig
 
 # Power
 TARGET_POWERHAL_VARIANT := qcom
@@ -157,7 +157,7 @@ TARGET_TAP_TO_WAKE_NODE := "/data/tp/easy_wakeup_gesture"
 BOARD_USES_CYANOGEN_HARDWARE := true
 BOARD_HARDWARE_CLASS += \
     hardware/cyanogen/cmhw \
-    device/nubia/nx505j/cmhw
+    device/NUBIA/X9180/cmhw
 
 # Encryption
 TARGET_HW_DISK_ENCRYPTION := true
@@ -192,8 +192,6 @@ BOARD_HOSTAPD_DRIVER := NL80211
 BOARD_HOSTAPD_PRIVATE_LIB := lib_driver_cmd_qcwcn
 BOARD_WPA_SUPPLICANT_DRIVER := NL80211
 BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_qcwcn
-WIFI_DRIVER_MODULE_PATH := "/system/lib/modules/wlan.ko"
-WIFI_DRIVER_MODULE_NAME := "wlan"
 WIFI_DRIVER_FW_PATH_STA := "sta"
 WIFI_DRIVER_FW_PATH_AP := "ap"
 TARGET_USES_WCNSS_CTRL := true
@@ -215,5 +213,5 @@ SKIP_BOOT_JARS_CHECK := true
 
 # SELinux
 include device/qcom/sepolicy/sepolicy.mk
-BOARD_SEPOLICY_DIRS += device/nubia/nx505j/sepolicy
+BOARD_SEPOLICY_DIRS += device/NUBIA/X9180/sepolicy
 
