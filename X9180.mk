@@ -198,6 +198,11 @@ PRODUCT_PACKAGES += \
 #    libextmedia_jni \
 #    libstagefright_soft_flacdec 
 
+# Open gapps
+GAPPS_VARIANT := pico
+
+$(call inherit-product, vendor/google/build/opengapps-packages.mk)
+
 # Power
 PRODUCT_PACKAGES += \
     power.msm8226
